@@ -4,7 +4,7 @@
 #
 ############################################
 
-FROM resin/rpi-raspbian:wheezy
+FROM armhf/debian:8.3
 MAINTAINER Sasyan Valentin <https://github.com/VSasyan>
 
 # Installation of java 1.8 jdk 
