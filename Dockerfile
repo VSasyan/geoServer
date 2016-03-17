@@ -4,7 +4,7 @@
 #
 ############################################
 
-FROM armhf/debian:8.3
+FROM armhf/debian:jessie
 MAINTAINER Sasyan Valentin <https://github.com/VSasyan>
 
 # Installation of java 1.8 jdk 
@@ -31,6 +31,12 @@ RUN chown -R tomcat7:tomcat7 /var/log/tomcat7
 # Copy geoserver
 COPY geoserver.war /var/lib/tomcat7/webapps/geoserver.war
 
-# Start tomcat service
-#RUN service tomcat7 start
+# Modified sleep parameter
+COPY service_tomcat7 /etc/init.d/tomcat7
+RUN chmod +x /etc/init.d/tomcat7
+
+# Modify tomcat configuration
+COPY server.xml /usr/share/tomcat7/conf/server.xml
+
+ENTRYPOINT ["/etc/init.d/tomcat7", "start"]
 
