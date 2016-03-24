@@ -1,6 +1,6 @@
 # Geoserver in a container
 #
-# VERSION               0.0.1
+# VERSION               1.0.0
 #
 ############################################
 
@@ -38,5 +38,6 @@ RUN chmod +x /etc/init.d/tomcat7
 # Modify tomcat configuration
 COPY server.xml /usr/share/tomcat7/conf/server.xml
 
-ENTRYPOINT ["/etc/init.d/tomcat7", "start"]
+ENTRYPOINT ["/bin/sh", "-c"]
+CMD ["/etc/init.d/tomcat7 start && while true; do sleep 1000; done"]
 
